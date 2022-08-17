@@ -55,7 +55,7 @@
 
                 $.ajax({
                     method: 'post',
-                    url: "{{ route('/follow/1') }}",
+                    url: "{{ route('follow') }}",
                     data: {
                         id: "{{ $user->id }}",
                         _token: "{{ csrf_token() }}"
@@ -65,7 +65,7 @@
                         if (data.success) {
                             console.log("SUCCESS !!!");
                         } else {
-                            alert(data.message);
+                            console.log()(data.data);
                         }
                     }
                 });
