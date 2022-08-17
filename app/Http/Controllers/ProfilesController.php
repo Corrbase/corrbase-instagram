@@ -49,4 +49,26 @@ class ProfilesController extends Controller
 
         return redirect("/profile/{$user->id}");
     }
+
+    public function follow(Request $request)
+    {
+        $auth_user_id = auth()->user()->id;
+        $user_id = $request->get('id');
+
+        if ($auth_user_id == $user_id) {
+            return response()->json([
+                'success' => false,
+                'message' => "Can't follow yourself!",
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'user_id' => $user_id,
+                'auth_user_id' => $auth_user_id,
+            ],
+            'message' => "User successfully followed...",
+        ]);
+    }
 }

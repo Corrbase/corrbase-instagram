@@ -12,9 +12,9 @@
                             {{ $user->username }}
                         </h1>
 
-                        <button class="btn btn-primary ml-4">
-                            Follow
-                        </button>
+                    <button id="follow_btn" class="btn btn-primary ml-4">
+                        Follow
+                    </button>
                 </div>
                     @can('update', $user->profile)
                         <a href="/p/create">Add new Post</a>
@@ -45,3 +45,33 @@
         </div>
     </div>
 @endsection
+
+@push('custom_scripts')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $('#follow_btn').on('click', function () {
+
+                $.ajax({
+                    method: 'post',
+                    url: "{{ route('/follow/1') }}",
+                    data: {
+                        id: "{{ $user->id }}",
+                        _token: "{{ csrf_token() }}"
+                    },
+                    success: function (data) {
+                        console.log(data)
+                        if (data.success) {
+                            console.log("SUCCESS !!!");
+                        } else {
+                            alert(data.message);
+                        }
+                    }
+                });
+
+            });
+
+        });
+    </script>
+@endpush
