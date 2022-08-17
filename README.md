@@ -13,6 +13,16 @@
 | PUT/PATCH | /photo/{photo}      | update  | photo.update   |
 | DELETE    | /photo/{photo}      | destroy | photo.destroy  |
 
+
+## Delete all objects in post table
+```tinker
+    php artisan tinker
+
+    Post::truncate();
+    Exit
+```
+
+
 ## Author
 
 [Corrbase](https://laravel.com/docs/)

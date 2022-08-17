@@ -20,27 +20,19 @@
                 </div>
                 <div class="pt-4 font-weight-bold">{{ $user->profile->title }}</div>
                 <div>{{ $user->profile->description }}</div>
-                <div><a href="#">{{ $user->profile->url ?? N/A}}</a></div>
+                <div><a href="#">{{ $user->profile->url ?? 'N/A'}}</a></div>
             </div>
         </div>
 
         <div class="row pt-5">
 
-            <div class="col-4 pb-4">
-                <a href="#">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQV2FDFHiDS08NdRgvShySBLL2Tc5Jxq0CI6y4v66jT1ggefKECcf2jbSo0evCSAGuQMrk&usqp=CAU" class="w-100">
-                </a>
-            </div>
-            <div class="col-4 pb-4">
-                <a href="#">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQV2FDFHiDS08NdRgvShySBLL2Tc5Jxq0CI6y4v66jT1ggefKECcf2jbSo0evCSAGuQMrk&usqp=CAU" class="w-100">
-                </a>
-            </div>
-            <div class="col-4 pb-4">
-                <a href="#">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQV2FDFHiDS08NdRgvShySBLL2Tc5Jxq0CI6y4v66jT1ggefKECcf2jbSo0evCSAGuQMrk&usqp=CAU" class="w-100">
-                </a>
-            </div>
+            @foreach($user->posts as $post)
+                <div class="col-4 pb-4">
+                    <a href="/p/{{ $post->id }}">
+                        <img src="/storage/{{ $post->image }}" class="w-100">
+                    </a>
+                </div>
+            @endforeach
 
         </div>
     </div>
